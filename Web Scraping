@@ -1,0 +1,13 @@
+import urllib3
+from bs4 import BeautifulSoup
+import json
+import pandas as pd
+from pandas.io.json import json_normalize
+
+url = "https://indodax.com/api/summaries"
+http = urllib3.PoolManager()
+response = http.request('GET', url)
+soup = BeautifulSoup(response.data, "html.parser")
+
+json_data = json.loads(soup.decode('utf-8'))
+print(json_data)
